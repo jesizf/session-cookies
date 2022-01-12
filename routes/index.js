@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
+const formValidation = require('../validations/formValidation')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const {index, color, logout, destroy} = require('../controller/indexController')
+
+/* / */
+router
+.get('/', index)
+.post('/', formValidation, color)
+.get('/logout', logout)
+.get('/destroy', destroy)
 
 module.exports = router;
